@@ -55,7 +55,7 @@ defmodule BlockScoutWeb.API.V2.SmartContractView do
     %{"items" => Enum.map(reports, &prepare_audit_report/1), "next_page_params" => nil}
   end
 
-  defp prepare_audit_report(report) do
+  def prepare_audit_report(report) do
     %{
       "audit_company_name" => report.audit_company_name,
       "audit_report_url" => report.audit_report_url,
@@ -148,11 +148,11 @@ defmodule BlockScoutWeb.API.V2.SmartContractView do
     end
   end
 
-  defp prepare_output(%{"type" => type, "value" => value} = output) do
+  def prepare_output(%{"type" => type, "value" => value} = output) do
     Map.replace(output, "value", render_json(value, type))
   end
 
-  defp prepare_output(output), do: output
+  def prepare_output(output), do: output
 
   # credo:disable-for-next-line
   def prepare_smart_contract(
